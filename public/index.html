@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Intrinsic Value Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📈 Stock Value vs Intrinsic Value</h1>
+            <p>Discover the intrinsic value of a stock using the Discounted Cash Flow (DCF) method.</p>
+        </header>
+        <main>
+            <div class="input-container">
+                <input type="text" id="ticker" placeholder="Enter Stock Ticker (e.g., AAPL)" />
+                <button id="calculate">Calculate</button>
+            </div>
+            <div id="error-message" class="error-message" style="display:none; color:red;"></div>
+            <div id="result" class="result">
+                <p class="placeholder">Results will appear here after calculation.</p>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; 2025 Stock Valuation Tool. All Rights Reserved.</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

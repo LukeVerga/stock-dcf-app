@@ -1,0 +1,104 @@
+/* General Reset */
+body, h1, p {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background: #f9fafc;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Container */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Header */
+header h1 {
+    font-size: 24px;
+    color: #0066cc;
+}
+
+header p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Input Section */
+.input-container {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 60%;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #0066cc;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #004c99;
+}
+
+/* Results Section */
+.result {
+    margin-top: 20px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.result p {
+    margin: 10px 0;
+}
+
+.placeholder {
+    font-size: 14px;
+    color: #999;
+}
+
+/* Error Message */
+.error-message {
+    margin-top: 10px;
+    font-size: 14px;
+    color: red;
+}
+
+/* Footer */
+footer {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #777;
+}
