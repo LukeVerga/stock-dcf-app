@@ -6,7 +6,7 @@ const app = express();
 
 // CORS Configuration
 const corsOptions = {
-    origin: "www.realvaluetrack.com", // Replace with your frontend's URL
+    origin: "www.realvaluetrack.com", // Replace with your frontend's URL rimettere https dopo anche nel originale
     optionsSuccessStatus: 200, // For some legacy browsers
 };
 app.use(cors(corsOptions));
