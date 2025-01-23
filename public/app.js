@@ -14,7 +14,7 @@ async function getStockData() {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/api/dcf/${ticker}`);
+        const response = await fetch(`https://stock-dcf-app.onrender.com/${ticker}`);
         const data = await response.json();
 
         if (data.error) {
