@@ -3,7 +3,13 @@ const axios = require("axios");
 const cors = require("cors");
 
 const app = express();
-app.use(cors());
+
+// CORS Configuration
+const corsOptions = {
+    origin: "https://www.realvaluetrack.com", // Replace with your frontend's URL
+    optionsSuccessStatus: 200, // For some legacy browsers
+};
+app.use(cors(corsOptions));
 
 const ALPHA_VANTAGE_API_KEY = process.env.ALPHA_VANTAGE_API_KEY;
 
