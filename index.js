@@ -34,43 +34,39 @@ app.get("/api/dcf/:ticker", async (req, res) => {
     const ticker = req.params.ticker;
 
     try {
-        // Fetch free cash flow data
+        // Fetch free cash flow
         const cashFlowResponse = await axios.get(
             `https://www.alphavantage.co/query?function=CASH_FLOW&symbol=${ticker}&apikey=${ALPHA_VANTAGE_API_KEY}`
         );
         const cashFlowData = cashFlowResponse.data;
 
-        // Validate cash flow data
         if (!cashFlowData.annualReports || cashFlowData.annualReports.length === 0) {
-            return res.status(404).json({
-                error: `No free cash flow data available for ${ticker}. This could be due to API limitations or a lack of data for the given ticker.`,
-            });
+            return res.status(404).json({ error: `No free cash flow data available for ${ticker}.` });
         }
 
         const freeCashFlow = parseFloat(cashFlowData.annualReports[0].operatingCashflow);
 
-        // Fetch metadata (including shares outstanding and market cap)
+        // Fetch metadata (including shares outstanding and stock price)
         const overviewResponse = await axios.get(
             `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=${ALPHA_VANTAGE_API_KEY}`
         );
         const overviewData = overviewResponse.data;
 
-        // Validate overview data
         if (!overviewData.SharesOutstanding || !overviewData.MarketCapitalization) {
-            return res.status(404).json({
-                error: `No sufficient data available for ${ticker}.`,
-            });
+            return res.status(404).json({ error: `No sufficient data available for ${ticker}.` });
         }
 
         const sharesOutstanding = parseFloat(overviewData.SharesOutstanding);
         const stockPrice = parseFloat(overviewData.MarketCapitalization) / sharesOutstanding;
 
-        // Calculate intrinsic value
         const growthRate = 0.05; // Example growth rate
         const discountRate = 0.1; // Example discount rate
+
+        // Calculate intrinsic value
         const totalDCF = calculateDCF(freeCashFlow, growthRate, discountRate);
         const dcfPerShare = totalDCF / sharesOutstanding;
 
+        // Return results
         res.json({
             ticker,
             dcfPerShare: dcfPerShare.toFixed(2),
@@ -79,10 +75,9 @@ app.get("/api/dcf/:ticker", async (req, res) => {
             upside: ((dcfPerShare / stockPrice - 1) * 100).toFixed(2),
         });
     } catch (error) {
-        console.error("Error fetching data:", error.response?.data || error.message);
-        res.status(500).json({ error: "An error occurred while fetching data. Please try again later." });
+        console.error("Error fetching data:", error.message);
+        res.status(500).json({ error: "Failed to fetch data." });
     }
 });
-
 
 app.listen(3000, () => console.log("Server running on http://localhost:3000"));
